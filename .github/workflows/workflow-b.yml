@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Say hello
-        run: echo "Workflow B triggered by Workflow A!"
+        run: echo "Workflow B triggered by Workflow A, using ref ${{ github.ref_name }}"
