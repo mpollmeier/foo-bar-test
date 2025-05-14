@@ -1,0 +1,17 @@
+name: Workflow A - Trigger Workflow B
+
+on:
+  push:
+    branches: [master, main]
+
+jobs:
+  trigger_workflow_b:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Workflow B
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/workflow-b.yml/dispatches \
+            -d '{"ref":"main"}'
